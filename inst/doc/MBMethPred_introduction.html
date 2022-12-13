@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>MBMethPred introduction</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/github.min.css">
+<script src="https://cdn.jsdelivr.net/combine/gh/highlightjs/cdn-release@11.6.0/build/highlight.min.js,npm/@xiee/utils/js/load-highlight.js" async></script>
+
+
+
+<style type="text/css">
+body, td {
+  font-family: sans-serif;
+  background-color: white;
+  font-size: 13px;
+}
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 1.5;
+}
+tt, code, pre {
+  font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+a:visited { color: #80007f; }
+pre, img { max-width: 100%; }
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+code[class] { background-color: #F8F8F8; }
+code.language-undefined { background-color: inherit; }
+table {
+  margin: auto;
+  border-top: 1px solid #666;
+  border-bottom: 1px solid #666;
+}
+table thead th { border-bottom: 1px solid #ddd; }
+th, td { padding: 5px; }
+thead, tfoot, tr:nth-child(even) { background: #eee; }
+blockquote {
+  color:#666;
+  margin:0;
+  padding-left: 1em;
+  border-left: 0.5em #eee solid;
+}
+hr { border: 1px #ddd dashed; }
+
+@media print {
+  * {
+    background: transparent !important;
+    color: black !important;
+    filter:none !important;
+  }
+  body {
+    font-size: 12pt;
+    max-width: 100%;
+  }
+  a, a:visited { text-decoration: underline; }
+  hr {
+    visibility: hidden;
+    page-break-before: always;
+  }
+  pre, blockquote {
+    padding-right: 1em;
+    page-break-inside: avoid;
+  }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h2>Input file for prediction</h2>
+<p>The <code>ReadMethylFile</code> is a function for reading DNA methylation files and use them as new data for prediction by every model. The input for this function should be either CSV or TSV file format. Please uncomment the following lines and run the function.</p>
+<h3>Usage</h3>
+<pre><code class="language-r"># set.seed(1234)
+# fac &lt;- ncol(Data1)
+# NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
+# NewData &lt;- cbind(rownames(NewData), NewData)
+# colnames(NewData)[1] &lt;- &quot;ID&quot;
+# write.csv(NewData, &quot;NewData.csv&quot;, quote = FALSE, row.names = FALSE)
+# methyl &lt;- ReadMethylFile(File = &quot;NewData.csv&quot;)
+</code></pre>
+<p>This function has only one argument, the File. While the first column is CpG methylation probs, starting with cg and followed by a number, other columns are samples with methylation values. All columns should be named.</p>
+<h2>Box plot</h2>
+<p>The <code>BoxPlot</code> function draws a box plot out of the DNA methylation dataset or other data frames.</p>
+<h3>Usage</h3>
+<pre><code class="language-r">
+data &lt;- Data2[1:20,]
+data &lt;- cbind(rownames(data), data)
+colnames(data)[1] &lt;- &quot;ID&quot;
+BoxPlot(File = data, Projname = NULL)
+</code></pre>
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-3" /></p>
+<p>This function has two arguments as follow:</p>
+<ul>
+<li><code>File</code>    A data frame with the first column as ID.</li>
+<li><code>Projname</code> A string to name the plot.</li>
+</ul>
+<h2>t-SNE 3D plot</h2>
+<p>The <code>TSNEPlot</code> function draws a 3D t-SNE plot for DNA methylation dataset using the K-means clustering technique. This function has two arguments <code>File</code> (any matrices) and <code>NCluster</code> ( number of clusters for K-Means clustering).</p>
+<h3>Usage</h3>
+<pre><code class="language-r">data &lt;- data.frame(t(Data2[1:100,]))
+data &lt;- cbind(rownames(data), data)
+colnames(data)[1] &lt;- &quot;ID&quot;
+TSNEPlot(File = data, NCluster = 4)
+</code></pre>
+<p>An R window will appear with a 3D projection of the t-SNE result. The plot object can be saved with the next line of code (uncomment).</p>
+<pre><code class="language-r"># rgl.snapshot('tsne3d.png', fmt = 'png')
+</code></pre>
+<h2>Input file for similarity network fusion (SNF)</h2>
+<p>Using <code>ReadSNFData</code> function, one can read files (any matrices with CSV or TSV format) and feed them into the similarity network fusion (SNF) function (from the SNFtools package). Please uncomment the following lines and run the function.</p>
+<h3>Usage</h3>
+<pre><code class="language-r"># data(Data2) # Gene expression 
+# Data2 &lt;- cbind(rownames(Data2), Data2)
+# colnames(Data2)[1] &lt;- &quot;ID&quot;
+# write.csv(Data2, &quot;Data2.csv&quot;, row.names = FALSE)
+# Data2 &lt;- ReadSNFData(File = &quot;Data2.csv&quot;)
+</code></pre>
+<h2>Similarity network fusion (SNF)</h2>
+<p>The <code>SimilarityNetworkFusion</code> is a function to perform SNF function (from SNFtool package) and output clusters.</p>
+<h3>Usage</h3>
+<pre><code class="language-r">data(RLabels) # Real labels
+data(Data2) # Methylation
+data(Data3) # Gene expression
+snf &lt;- SimilarityNetworkFusion(Files = list(Data2, Data3),
+                               NNeighbors  = 13,
+                               Sigma = 0.75,
+                               NClusters = 4,
+                               CLabels = c(&quot;Group4&quot;, &quot;SHH&quot;, &quot;WNT&quot;, &quot;Group3&quot;),
+                               RLabels = RLabels,
+                               Niterations = 60)
+</code></pre>
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-7" /></p>
+<pre><code class="language-r">snf
+#&gt;  [1] SHH    Group3 Group4 Group4 Group4 SHH    SHH    Group3 Group4 SHH   
+#&gt; [11] WNT    SHH    SHH    WNT    SHH    WNT    Group3 Group3 Group3 Group4
+#&gt; [21] Group4 Group3 Group3 Group3 Group4 Group4 Group4 Group3 Group3 SHH   
+#&gt; [31] SHH    SHH    SHH    SHH    Group4 Group3 SHH    Group4 Group4 Group3
+#&gt; [41] Group4 Group4 WNT    Group3 Group4 Group4 Group4 Group4 SHH    Group4
+#&gt; Levels: Group4 SHH WNT Group3
+</code></pre>
+<p>This function has several arguments as follow:</p>
+<ul>
+<li><code>Files</code>   A list of data frames created using the ReadSNFData function or matrices.</li>
+<li><code>NNeighbors</code>    The number of nearest neighbors.</li>
+<li><code>Sigma</code>     The variance for local model.</li>
+<li><code>NClusters</code>   The number of clusters.</li>
+<li><code>CLabels</code>   A string vector to name the clusters. Optional.</li>
+<li><code>RLabels</code>   The actual label of samples to calculate the Normalized Mutual Information (NMI) score. Optional.</li>
+<li><code>Niterations</code>   The number of iterations for the diffusion process.</li>
+</ul>
+<h2>Support vector machine model</h2>
+<p>The <code>SupportVectorMachineModel</code> is a function to train a support vector machine model to classify medulloblastoma subgroups using the DNA methylation dataset (Illumina Infinium HumanMethylation450). Prediction is followed by training if new data is provided.</p>
+<p>Model metrics, including accuracy, precision, sensitivity F1-Score, specificity, and AUC_average can be calculated for the test dataset using the <code>ModelMetrics</code> function, which calculates the average of the above parameters from the result of the <code>ConfusionMatrix</code> function.</p>
+<p>The prediction result on new data can be accessed through the <code>NewDataPredictionResult</code> function, which calculates every prediction’s mode across the number of cross-validation folds.</p>
+<h3>Usage</h3>
+<pre><code class="language-r">set.seed(1234)
+fac &lt;- ncol(Data1)
+NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
+NewData &lt;- cbind(rownames(NewData), NewData)
+colnames(NewData)[1] &lt;- &quot;ID&quot;
+
+svm &lt;- SupportVectorMachineModel(SplitRatio = 0.8, 
+                                 CV = 10, 
+                                 NCores = 1, 
+                                 NewData = NewData)
+ModelMetrics(Model = svm)
+#&gt;        Accuracy Precision Sensitivity F1_Score Specificity AUC_average
+#&gt; Group3    0.988     0.932       0.996    0.963       0.986       0.985
+#&gt; SHH       1.000     1.000       1.000    1.000       1.000       0.985
+#&gt; WNT       0.995     1.000       0.976    0.988       1.000       0.985
+#&gt; Group4    0.993     0.998       0.983    0.990       0.999       0.985
+NewDataPredictionResult(Model = svm)
+#&gt;            Subgroup
+#&gt; GSM2261711   Group3
+#&gt; X78             WNT
+#&gt; GSM2261640   Group4
+#&gt; GSM2261575   Group4
+#&gt; X135            WNT
+#&gt; GSM2262184   Group3
+#&gt; GSM2261613   Group3
+#&gt; X130            WNT
+#&gt; GSM2261922   Group4
+#&gt; GSM2261980   Group3
+</code></pre>
+<p>This function has the following arguments:</p>
+<ul>
+<li><code>SplitRatio</code>    Train and test split ratio. A value greater or equal to zero and less than one.</li>
+<li><code>CV</code>    The number of folds for cross-validation. It should be greater than one.</li>
+<li><code>NCores</code>    The number of cores for parallel computing.</li>
+<li><code>NewData</code>    A methylation data for prediction.</li>
+</ul>
+<h2>K nearest neighbor model</h2>
+<p>The <code>KNearestNeighborModel</code> is a function to train a K nearest neighbor model to classify medulloblastoma subgroups using the DNA methylation dataset.</p>
+<h3>Usage</h3>
+<pre><code class="language-r">set.seed(1234)
+fac &lt;- ncol(Data1)
+NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
+NewData &lt;- cbind(rownames(NewData), NewData)
+colnames(NewData)[1] &lt;- &quot;ID&quot;
+
+knn &lt;- KNearestNeighborModel(SplitRatio = 0.8, 
+                             CV = 10, 
+                             K = 3, 
+                             NCores = 1, 
+                             NewData = NewData)
+ModelMetrics(Model = knn)
+#&gt;        Accuracy Precision Sensitivity F1_Score Specificity AUC_average
+#&gt; Group3    0.993     0.981       0.973    0.977       0.996       0.985
+#&gt; SHH       0.999     1.000       0.997    0.999       1.000       0.985
+#&gt; WNT       0.999     0.997       1.000    0.999       0.999       0.985
+#&gt; Group4    0.993     0.988       0.991    0.990       0.993       0.985
+NewDataPredictionResult(Model = knn)
+#&gt;            Subgroup
+#&gt; GSM2261711   Group3
+#&gt; X78             WNT
+#&gt; GSM2261640   Group4
+#&gt; GSM2261575   Group4
+#&gt; X135            WNT
+#&gt; GSM2262184   Group3
+#&gt; GSM2261613   Group3
+#&gt; X130            WNT
+#&gt; GSM2261922   Group4
+#&gt; GSM2261980   Group3
+</code></pre>
+<p>This function has the following arguments:</p>
+<ul>
+<li><code>SplitRatio</code>    Train and test split ratio. A value greater or equal to zero and less than one.</li>
+<li><code>CV</code>    The number of folds for cross-validation. It should be greater than one.</li>
+<li><code>K</code>   The number of nearest neighbors.</li>
+<li><code>NCores</code>    The number of cores for parallel computing.</li>
+<li><code>NewData</code>    A methylation data for prediction.</li>
+</ul>
+<h2>Random forest model</h2>
+<p>The <code>RandomForestModel</code> is a function to train a random forest model to classify medulloblastoma subgroups using the DNA methylation dataset.</p>
+<h3>Usage</h3>
+<pre><code class="language-r">set.seed(1234)
+fac &lt;- ncol(Data1)
+NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
+NewData &lt;- cbind(rownames(NewData), NewData)
+colnames(NewData)[1] &lt;- &quot;ID&quot;
+
+rf &lt;- RandomForestModel(SplitRatio = 0.8, 
+                        CV = 10, 
+                        NTree = 100, 
+                        NCores = 1, 
+                        NewData = NewData)
+ModelMetrics(Model = rf)
+#&gt;        Accuracy Precision Sensitivity F1_Score Specificity AUC_average
+#&gt; Group3    0.999     1.000       0.996    0.998       1.000       0.998
+#&gt; SHH       1.000     1.000       1.000    1.000       1.000       0.998
+#&gt; WNT       1.000     1.000       1.000    1.000       1.000       0.998
+#&gt; Group4    0.999     0.998       1.000    0.999       0.999       0.998
+NewDataPredictionResult(Model = rf)
+#&gt;            Subgroup
+#&gt; GSM2261711   Group3
+#&gt; X78             WNT
+#&gt; GSM2261640   Group4
+#&gt; GSM2261575   Group4
+#&gt; X135            WNT
+#&gt; GSM2262184   Group3
+#&gt; GSM2261613   Group3
+#&gt; X130            WNT
+#&gt; GSM2261922   Group4
+#&gt; GSM2261980   Group3
+</code></pre>
+<p>This function has the following arguments:</p>
+<ul>
+<li><code>SplitRatio</code>    Train and test split ratio. A value greater or equal to zero and less than one.</li>
+<li><code>CV</code>    The number of folds for cross-validation. It should be greater than one.</li>
+<li><code>NTree</code>   The number of trees to be grown.</li>
+<li><code>NCores</code>    The number of cores for parallel computing.</li>
+<li><code>NewData</code>  A methylation data for prediction.</li>
+</ul>
+<h2>XGBoost model</h2>
+<p>The <code>XGBoostModel</code> is a A function to train an XGBoost model to classify medulloblastoma subgroups using the DNA methylation dataset.</p>
+<h3>Usage</h3>
+<pre><code class="language-r">set.seed(1234)
+fac &lt;- ncol(Data1)
+NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
+NewData &lt;- cbind(rownames(NewData), NewData)
+colnames(NewData)[1] &lt;- &quot;ID&quot;
+
+xgboost &lt;- XGBoostModel(SplitRatio = 0.8, 
+                        CV = 10, 
+                        NCores = 1, 
+                        NewData = NewData)
+#&gt; [1]	train-mlogloss:0.390594 
+#&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
+#&gt; 
+#&gt; [2]	train-mlogloss:0.177861 
+#&gt; [3]	train-mlogloss:0.087035 
+#&gt; [4]	train-mlogloss:0.043112 
+#&gt; [5]	train-mlogloss:0.022536 
+#&gt; [6]	train-mlogloss:0.012486 
+#&gt; [7]	train-mlogloss:0.007278 
+#&gt; [8]	train-mlogloss:0.004395 
+#&gt; [9]	train-mlogloss:0.002879 
+#&gt; [10]	train-mlogloss:0.002457 
+#&gt; [1]	train-mlogloss:0.388419 
+#&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
+#&gt; 
+#&gt; [2]	train-mlogloss:0.177664 
+#&gt; [3]	train-mlogloss:0.085746 
+#&gt; [4]	train-mlogloss:0.043333 
+#&gt; [5]	train-mlogloss:0.022637 
+#&gt; [6]	train-mlogloss:0.012444 
+#&gt; [7]	train-mlogloss:0.007140 
+#&gt; [8]	train-mlogloss:0.004413 
+#&gt; [9]	train-mlogloss:0.002823 
+#&gt; [10]	train-mlogloss:0.002431 
+#&gt; [1]	train-mlogloss:0.388072 
+#&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
+#&gt; 
+#&gt; [2]	train-mlogloss:0.176992 
+#&gt; [3]	train-mlogloss:0.085394 
+#&gt; [4]	train-mlogloss:0.043119 
+#&gt; [5]	train-mlogloss:0.022323 
+#&gt; [6]	train-mlogloss:0.012245 
+#&gt; [7]	train-mlogloss:0.006953 
+#&gt; [8]	train-mlogloss:0.004304 
+#&gt; [9]	train-mlogloss:0.002808 
+#&gt; [10]	train-mlogloss:0.002544 
+#&gt; [1]	train-mlogloss:0.386945 
+#&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
+#&gt; 
+#&gt; [2]	train-mlogloss:0.175823 
+#&gt; [3]	train-mlogloss:0.085418 
+#&gt; [4]	train-mlogloss:0.042969 
+#&gt; [5]	train-mlogloss:0.022146 
+#&gt; [6]	train-mlogloss:0.012049 
+#&gt; [7]	train-mlogloss:0.006975 
+#&gt; [8]	train-mlogloss:0.004246 
+#&gt; [9]	train-mlogloss:0.002766 
+#&gt; [10]	train-mlogloss:0.002319 
+#&gt; [1]	train-mlogloss:0.387957 
+#&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
+#&gt; 
+#&gt; [2]	train-mlogloss:0.177210 
+#&gt; [3]	train-mlogloss:0.085601 
+#&gt; [4]	train-mlogloss:0.043317 
+#&gt; [5]	train-mlogloss:0.022903 
+#&gt; [6]	train-mlogloss:0.012530 
+#&gt; [7]	train-mlogloss:0.007282 
+#&gt; [8]	train-mlogloss:0.004478 
+#&gt; [9]	train-mlogloss:0.002934 
+#&gt; [10]	train-mlogloss:0.002514 
+#&gt; [1]	train-mlogloss:0.390082 
+#&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
+#&gt; 
+#&gt; [2]	train-mlogloss:0.177320 
+#&gt; [3]	train-mlogloss:0.085780 
+#&gt; [4]	train-mlogloss:0.043300 
+#&gt; [5]	train-mlogloss:0.022592 
+#&gt; [6]	train-mlogloss:0.012513 
+#&gt; [7]	train-mlogloss:0.007264 
+#&gt; [8]	train-mlogloss:0.004434 
+#&gt; [9]	train-mlogloss:0.002923 
+#&gt; [10]	train-mlogloss:0.002552 
+#&gt; [1]	train-mlogloss:0.391327 
+#&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
+#&gt; 
+#&gt; [2]	train-mlogloss:0.178571 
+#&gt; [3]	train-mlogloss:0.086584 
+#&gt; [4]	train-mlogloss:0.043455 
+#&gt; [5]	train-mlogloss:0.022545 
+#&gt; [6]	train-mlogloss:0.012333 
+#&gt; [7]	train-mlogloss:0.007139 
+#&gt; [8]	train-mlogloss:0.004347 
+#&gt; [9]	train-mlogloss:0.002808 
+#&gt; [10]	train-mlogloss:0.002392 
+#&gt; [1]	train-mlogloss:0.387270 
+#&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
+#&gt; 
+#&gt; [2]	train-mlogloss:0.176343 
+#&gt; [3]	train-mlogloss:0.085785 
+#&gt; [4]	train-mlogloss:0.042867 
+#&gt; [5]	train-mlogloss:0.022099 
+#&gt; [6]	train-mlogloss:0.011727 
+#&gt; [7]	train-mlogloss:0.006694 
+#&gt; [8]	train-mlogloss:0.003969 
+#&gt; [9]	train-mlogloss:0.002619 
+#&gt; [10]	train-mlogloss:0.002393 
+#&gt; [1]	train-mlogloss:0.385785 
+#&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
+#&gt; 
+#&gt; [2]	train-mlogloss:0.175053 
+#&gt; [3]	train-mlogloss:0.084670 
+#&gt; [4]	train-mlogloss:0.042764 
+#&gt; [5]	train-mlogloss:0.022229 
+#&gt; [6]	train-mlogloss:0.011936 
+#&gt; [7]	train-mlogloss:0.006921 
+#&gt; [8]	train-mlogloss:0.004281 
+#&gt; [9]	train-mlogloss:0.002846 
+#&gt; [10]	train-mlogloss:0.002425 
+#&gt; [1]	train-mlogloss:0.388743 
+#&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
+#&gt; 
+#&gt; [2]	train-mlogloss:0.176686 
+#&gt; [3]	train-mlogloss:0.086097 
+#&gt; [4]	train-mlogloss:0.043017 
+#&gt; [5]	train-mlogloss:0.022624 
+#&gt; [6]	train-mlogloss:0.012143 
+#&gt; [7]	train-mlogloss:0.007023 
+#&gt; [8]	train-mlogloss:0.004200 
+#&gt; [9]	train-mlogloss:0.002729 
+#&gt; [10]	train-mlogloss:0.002506
+ModelMetrics(Model = xgboost)
+#&gt;        Accuracy Precision Sensitivity F1_Score Specificity AUC_average
+#&gt; Group3    0.979     0.896       0.981    0.936       0.978       0.968
+#&gt; Group4    0.993     0.990       0.991    0.991       0.994       0.968
+#&gt; SHH       0.998     1.000       0.990    0.995       1.000       0.968
+#&gt; WNT       0.983     0.992       0.934    0.962       0.998       0.968
+NewDataPredictionResult(Model = xgboost)
+#&gt;            Subgroup
+#&gt; GSM2261711   Group3
+#&gt; X78             WNT
+#&gt; GSM2261640   Group4
+#&gt; GSM2261575   Group4
+#&gt; X135            WNT
+#&gt; GSM2262184   Group3
+#&gt; GSM2261613   Group3
+#&gt; X130            WNT
+#&gt; GSM2261922   Group4
+#&gt; GSM2261980   Group3
+</code></pre>
+<p>This function has the following arguments:</p>
+<ul>
+<li><code>SplitRatio</code>    Train and test split ratio. A value greater or equal to zero and less than one.</li>
+<li><code>CV</code>    The number of folds for cross-validation. It should be greater than one.</li>
+<li><code>NCores</code>    The number of cores for parallel computing.</li>
+<li><code>NewData</code>  A methylation data for prediction.</li>
+</ul>
+<h2>Linear discriminant analysis model</h2>
+<p>The <code>LinearDiscriminantAnalysisModel</code> is a function to train a linear discriminant analysis model to classify medulloblastoma subgroups using the DNA methylation dataset.</p>
+<h3>Usage</h3>
+<pre><code class="language-r">set.seed(1234)
+fac &lt;- ncol(Data1)
+NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
+NewData &lt;- cbind(rownames(NewData), NewData)
+colnames(NewData)[1] &lt;- &quot;ID&quot;
+
+lda &lt;- LinearDiscriminantAnalysisModel(SplitRatio = 0.8, 
+                                       CV = 10, 
+                                       NCores = 1, 
+                                       NewData = NewData)
+ModelMetrics(Model = lda)
+#&gt;        Accuracy Precision Sensitivity F1_Score Specificity AUC_average
+#&gt; Group3    0.941     0.778       0.889    0.828       0.951        0.91
+#&gt; SHH       0.994     0.991       0.985    0.988       0.997        0.91
+#&gt; WNT       0.993     0.986       0.981    0.984       0.996        0.91
+#&gt; Group4    0.945     0.949       0.893    0.920       0.973        0.91
+NewDataPredictionResult(Model = lda)
+#&gt;            Subgroup
+#&gt; GSM2261711   Group3
+#&gt; X78             WNT
+#&gt; GSM2261640   Group4
+#&gt; GSM2261575   Group4
+#&gt; X135            WNT
+#&gt; GSM2262184   Group3
+#&gt; GSM2261613   Group3
+#&gt; X130            WNT
+#&gt; GSM2261922   Group4
+#&gt; GSM2261980   Group3
+</code></pre>
+<p>This function has the following arguments:</p>
+<ul>
+<li><code>SplitRatio</code>    Train and test split ratio. A value greater or equal to zero and less than one.</li>
+<li><code>CV</code>    The number of folds for cross-validation. It should be greater than one.</li>
+<li><code>NCores</code>    The number of cores for parallel computing.</li>
+<li><code>NewData</code>  A methylation data for prediction.</li>
+</ul>
+<h2>Naive bayes model</h2>
+<p>The <code>NaiveBayesModel</code> is a function to train a Naive Bayes model to classify medulloblastoma subgroups using the DNA methylation dataset.</p>
+<h3>Usage</h3>
+<pre><code class="language-r">set.seed(1234)
+fac &lt;- ncol(Data1)
+NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
+NewData &lt;- cbind(rownames(NewData), NewData)
+colnames(NewData)[1] &lt;- &quot;ID&quot;
+
+nb &lt;- NaiveBayesModel(SplitRatio = 0.8, 
+                      CV = 10, 
+                      Threshold = 0.8, 
+                      NCores = 1, 
+                      NewData = NewData)
+ModelMetrics(Model = nb)
+#&gt;        Accuracy Precision Sensitivity F1_Score Specificity AUC_average
+#&gt; Group3    0.974     0.859       1.000    0.924       0.969       0.971
+#&gt; SHH       1.000     1.000       1.000    1.000       1.000       0.971
+#&gt; WNT       0.984     1.000       0.928    0.963       1.000       0.971
+#&gt; Group4    0.990     1.000       0.972    0.986       1.000       0.971
+NewDataPredictionResult(Model = nb)
+#&gt;            Subgroup
+#&gt; GSM2261711   Group3
+#&gt; X78             WNT
+#&gt; GSM2261640   Group4
+#&gt; GSM2261575   Group4
+#&gt; X135            WNT
+#&gt; GSM2262184   Group3
+#&gt; GSM2261613   Group3
+#&gt; X130            WNT
+#&gt; GSM2261922   Group4
+#&gt; GSM2261980   Group3
+</code></pre>
+<p>This function has the following arguments:</p>
+<ul>
+<li><code>SplitRatio</code>    Train and test split ratio. A value greater or equal to zero and less than one.</li>
+<li><code>CV</code>    The number of folds for cross-validation. It should be greater than one.</li>
+<li><code>Threshold</code>   The threshold for deciding class probability. A value greater or equal to zero and less than one.</li>
+<li><code>NCores</code>    The number of cores for parallel computing.</li>
+<li><code>NewData</code>  A methylation data for prediction.</li>
+</ul>
+<h2>Artificial neural network model</h2>
+<p>The <code>NeuralNetworkModel</code> is a function to train an artificial neural network model to classify medulloblastoma subgroups using the DNA methylation dataset. Please uncomment the following lines and run the function. If it is the first time you run this function, set the InstallTensorFlow parameter to TRUE. It will automatically install the Python and TensorFlow library (version 2.10-cpu) in a virtual environment. Then set the parameter to FALSE.</p>
+<h3>Usage</h3>
+<pre><code class="language-r"># set.seed(1234)
+# fac &lt;- ncol(Data1)
+# NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
+# NewData &lt;- cbind(rownames(NewData), NewData)
+# colnames(NewData)[1] &lt;- &quot;ID&quot;
+# ann &lt;- NeuralNetworkModel(Epochs = 100, 
+#                           NewData = NewData,
+#                           InstallTensorFlow = TRUE)
+# ModelMetrics(Model = ann)
+# NewDataPredictionResult(Model = ann)
+</code></pre>
+<p>This function has the following arguments:</p>
+<ul>
+<li><code>Epochs</code>    The number of epochs.</li>
+<li><code>NewData</code>   A methylation data from ReadMethylFile function.</li>
+<li><code>InstallTensorFlow</code>   Logical. Running this function for the first time, you need to install TensorFlow library (V 2.10-cpu). Default is TRUE.</li>
+</ul>
+
+
+<script src="https://cdn.jsdelivr.net/combine/npm/@xiee/utils/js/center-img.min.js" async></script>
+</body>
+
+</html>
