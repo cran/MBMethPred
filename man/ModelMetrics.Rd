@@ -16,7 +16,7 @@ A data frame
 A function to extract the confusion matrix information.
 }
 \examples{
-xgboost <- XGBoostModel(SplitRatio = 0.6,
+xgboost <- XGBoostModel(SplitRatio = 0.2,
                         CV = 2,
                         NCores = 1,
                         NewData = NULL)

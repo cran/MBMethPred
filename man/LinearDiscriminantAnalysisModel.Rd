@@ -10,13 +10,13 @@
 
 \item{NCores}{The number of cores for parallel computing.}
 
-\item{NewData}{A methylation data from ReadMethylFile function.}
+\item{NewData}{A methylation beta values input from the ReadMethylFile function.}
 }
 \value{
 A list
 }
 \description{
-A function to train a linear discriminant analysis model to classify medulloblastoma subgroups using the DNA methylation dataset (Illumina Infinium HumanMethylation450). Prediction is followed by training if new data is provided.
+A function to train a linear discriminant analysis model to classify medulloblastoma subgroups using the DNA methylation beta values (Illumina Infinium HumanMethylation450). Prediction is followed by training if new data is provided.
 }
 \examples{
 set.seed(123)

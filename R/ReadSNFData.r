@@ -3,7 +3,7 @@
 #' @export
 #' @importFrom stringr str_extract %>%
 #' @importFrom utils write.csv
-#' @param File A table with tsv or csv file extension. While the first column is a character vector (e.g., gene names or IDs), columns are samples. All columns should be named.
+#' @param File A data frame with tsv or csv file extension. The first column of the data frame is the CpG methylation probe that starts with cg characters and is followed by a number (e.g., cg100091). Other columns are samples with methylation beta values. All columns in the data frame should have a name.
 #' @return A data frame
 #' @examples
 #' \dontrun{

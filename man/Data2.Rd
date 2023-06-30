@@ -12,7 +12,7 @@ https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE85212
 A data frame
 }
 \description{
-Data2 is a medulloblastoma DNA methylation dataset (GSE85212, 50 samples) including 10000 most variable probes used for similarity network fusion.
+Data2 is a medulloblastoma DNA methylation beta values (GSE85212, 50 samples) including 10000 most variable probes used for similarity network fusion.
 }
 \examples{
 data(Data2)

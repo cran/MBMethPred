@@ -10,17 +10,17 @@
 
 \item{NCores}{The number of cores for parallel computing.}
 
-\item{NewData}{A methylation data from the ReadMethylFile function.}
+\item{NewData}{A methylation beta values input from the ReadMethylFile function.}
 }
 \value{
 A list
 }
 \description{
-A function to train an XGBoost model to classify medulloblastoma subgroups using the DNA methylation dataset (Illumina Infinium HumanMethylation450). Prediction is followed by training if new data is provided.
+A function to train an XGBoost model to classify medulloblastoma subgroups using DNA methylation beta values (Illumina Infinium HumanMethylation450). Prediction is followed by training if new data is provided.
 }
 \examples{
 set.seed(123)
-xgboost <- XGBoostModel(SplitRatio = 0.6,
+xgboost <- XGBoostModel(SplitRatio = 0.2,
                         CV = 2,
                         NCores = 1,
                         NewData = NULL)

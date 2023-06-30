@@ -12,7 +12,7 @@ https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE85217
 A data frame
 }
 \description{
-Data3 is an expression dataset from primary medulloblastoma samples (GSE85217, 50 samples) used for similarity network fusion.
+Data3 is an gene expression dataset from primary medulloblastoma samples (GSE85217, 50 samples) used for similarity network fusion.
 }
 \examples{
 data(Data3)

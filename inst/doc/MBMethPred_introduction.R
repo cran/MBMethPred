@@ -21,7 +21,7 @@ require(MBMethPred)
 # write.csv(NewData, "NewData.csv", quote = FALSE, row.names = FALSE)
 # methyl <- ReadMethylFile(File = "NewData.csv")
 
-## -----------------------------------------------------------------------------
+## ----fig.width= 8, fig.height=5-----------------------------------------------
 
 data <- Data2[1:20,]
 data <- cbind(rownames(data), data)

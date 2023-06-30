@@ -7,13 +7,13 @@
 ReadMethylFile(File)
 }
 \arguments{
-\item{File}{A data frame with tsv or csv file extension. While the first column is CpG methylation probs, starting with cg and followed by a number, other columns are samples with methylation values. All columns should be named.}
+\item{File}{A data frame with tsv or csv file extension. The first column of the data frame is the CpG methylation probe that starts with cg characters and is followed by a number (e.g., cg100091). Other columns are samples with methylation beta values. All columns in the data frame should have a name.}
 }
 \value{
 A data frame
 }
 \description{
-A function to read DNA methylation files can be used as the new data for prediction by every model.
+A function to read DNA methylation files. It can be used as the new data for prediction by every model.
 }
 \examples{
 \dontrun{

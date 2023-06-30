@@ -21,7 +21,7 @@ fac <- ncol(Data1)
 NewData <- sample(data.frame(t(Data1[,-fac])),10)
 NewData <- cbind(rownames(NewData), NewData)
 colnames(NewData)[1] <- "ID"
-xgboost <- XGBoostModel(SplitRatio = 0.6,
+xgboost <- XGBoostModel(SplitRatio = 0.2,
                         CV = 2,
                         NCores = 1,
                         NewData = NewData)

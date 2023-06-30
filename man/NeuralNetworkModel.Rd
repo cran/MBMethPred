@@ -6,7 +6,7 @@
 \arguments{
 \item{Epochs}{The number of epochs.}
 
-\item{NewData}{A methylation data from ReadMethylFile function.}
+\item{NewData}{A methylation beta values input from the ReadMethylFile function.}
 
 \item{InstallTensorFlow}{Logical. Running this function for the first time, you need to install TensorFlow library (V 2.10-cpu). Default is TRUE.}
 }
@@ -14,7 +14,7 @@
 A list
 }
 \description{
-A function to train an artificial neural network model to classify medulloblastoma subgroups using the DNA methylation dataset (Illumina Infinium HumanMethylation450). Prediction is followed by training if new data is provided.
+A function to train an artificial neural network model to classify medulloblastoma subgroups using DNA methylation beta values (Illumina Infinium HumanMethylation450). Prediction is followed by training if new data is provided.
 }
 \examples{
 \dontrun{

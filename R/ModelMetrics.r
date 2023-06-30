@@ -6,7 +6,7 @@
 #' @param Model A trained model.
 #' @return A data frame
 #' @examples
-#' xgboost <- XGBoostModel(SplitRatio = 0.6,
+#' xgboost <- XGBoostModel(SplitRatio = 0.2,
 #'                         CV = 2,
 #'                         NCores = 1,
 #'                         NewData = NULL)

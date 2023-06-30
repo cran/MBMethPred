@@ -1,12 +1,12 @@
 #' @title Artificial neural network model
 #' @name NeuralNetworkModel
-#' @description A function to train an artificial neural network model to classify medulloblastoma subgroups using the DNA methylation dataset (Illumina Infinium HumanMethylation450). Prediction is followed by training if new data is provided.
+#' @description A function to train an artificial neural network model to classify medulloblastoma subgroups using DNA methylation beta values (Illumina Infinium HumanMethylation450). Prediction is followed by training if new data is provided.
 #' @export
 #' @importFrom keras to_categorical keras_model_sequential layer_dense layer_activation_leaky_relu layer_dropout optimizer_sgd callback_early_stopping compile fit regularizer_l2
 #' @importFrom stats predict
 #' @importFrom stringr %>%
 #' @param Epochs The number of epochs.
-#' @param NewData A methylation data from ReadMethylFile function.
+#' @param NewData A methylation beta values input from the ReadMethylFile function.
 #' @param InstallTensorFlow Logical. Running this function for the first time, you need to install TensorFlow library (V 2.10-cpu). Default is TRUE.
 #' @return A list
 #' @examples

@@ -1,6 +1,6 @@
 #' @title Naive bayes model
 #' @name NaiveBayesModel
-#' @description A function to train a Naive Bayes model to classify medulloblastoma subgroups using the DNA methylation dataset (Illumina Infinium HumanMethylation450). Prediction is followed by training if new data is provided.
+#' @description A function to train a Naive Bayes model to classify medulloblastoma subgroups using DNA methylation beta values (Illumina Infinium HumanMethylation450). Prediction is followed by training if new data is provided.
 #' @export
 #' @importFrom caTools sample.split
 #' @importFrom caret createFolds
@@ -11,7 +11,7 @@
 #' @param CV The number of folds for cross-validation. It should be greater than one.
 #' @param Threshold The threshold for deciding class probability. A value greater or equal to zero and less than one.
 #' @param NCores The number of cores for parallel computing.
-#' @param NewData A methylation data from ReadMethylFile function.
+#' @param NewData A methylation beta values input from the ReadMethylFile function.
 #' @return A list
 #' @examples
 #' set.seed(123)

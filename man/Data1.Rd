@@ -12,7 +12,7 @@ https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE85212
 A data frame
 }
 \description{
-Data1 is a medulloblastoma DNA methylation dataset from a GEO series (GSE85212) and focuses on 399 as the most important probes. This dataset is used to train and test the machine and deep learning models.
+Data1 is a medulloblastoma DNA methylation beta values from a GEO series (GSE85212) and focuses on 399 as the most important probes. This dataset is used to train and test the machine and deep learning models.
 }
 \examples{
 data(Data1)

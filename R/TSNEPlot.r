@@ -1,6 +1,6 @@
 #' @title t-SNE 3D plot
 #' @name TSNEPlot
-#' @description A function to draw a 3D t-SNE plot for DNA methylation dataset using the K-means clustering technique.
+#' @description A function to draw a 3D t-SNE plot for DNA methylation beta values using the K-means clustering technique.
 #' @export
 #' @importFrom stats kmeans
 #' @importFrom stringr %>%
@@ -54,7 +54,19 @@ TSNEPlot <- function(File, NCluster = 4){
     as.factor()
   tSNE_df <- tSNE_df %>%
     dplyr::mutate(Clusters = clust)
-  my_pal <- c("#7570B3", "#E7298A", "#66A61E", "#E6AB02", "#A6761D", "#666666", "#9A7D0A")
+  my_pal <-  c("#FF0000", "#00FF00", 
+               "#0000FF", "#FFFF00",
+               "#FF00FF", "#00FFFF",
+               "#800000", "#008000",
+               "#000080", "#808000",
+               "#800080", "#008080", 
+               "#C0C0C0", "#808080", 
+               "#FF8000", "#800000",
+               "#FF00FF", "#FFFF00", 
+               "#008000", "#00FF00",
+               "#0000FF", "#800080", 
+               "#FF8000", "#FF0000",
+               "#000000")
   p <-  rgl::plot3d(
     x=tSNE_df$tSNE1, y=tSNE_df$tSNE2, z=tSNE_df$tSNE3,
     col = my_pal[tSNE_df$Clusters],

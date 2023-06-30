@@ -15,7 +15,7 @@ TSNEPlot(File, NCluster = 4)
 Objects of rgl
 }
 \description{
-A function to draw a 3D t-SNE plot for DNA methylation dataset using the K-means clustering technique.
+A function to draw a 3D t-SNE plot for DNA methylation beta values using the K-means clustering technique.
 }
 \examples{
 \donttest{

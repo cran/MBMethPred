@@ -12,7 +12,7 @@ https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE85212
 Factor
 }
 \description{
-The actual labels from the medulloblastoma DNA methylation dataset (GSE85212, 50 samples) that was used for similarity network fusion.
+The actual labels from the medulloblastoma DNA methylation beta values (GSE85212, 50 samples) that was used for similarity network fusion.
 }
 \examples{
 data(RLabels)

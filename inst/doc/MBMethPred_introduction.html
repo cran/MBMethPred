@@ -1,90 +1,155 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>MBMethPred introduction</title>
-
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/github.min.css">
-<script src="https://cdn.jsdelivr.net/combine/gh/highlightjs/cdn-release@11.6.0/build/highlight.min.js,npm/@xiee/utils/js/load-highlight.js" async></script>
-
-
-
 <style type="text/css">
-body, td {
-  font-family: sans-serif;
-  background-color: white;
-  font-size: 13px;
+/**
+ * Prism.s theme ported from highlight.js's xcode style
+ */
+pre code {
+  padding: 1em;
 }
+.token.comment {
+  color: #007400;
+}
+.token.punctuation {
+  color: #999;
+}
+.token.tag,
+.token.selector {
+  color: #aa0d91;
+}
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol {
+  color: #1c00cf;
+}
+.token.property,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin {
+  color: #c41a16;
+}
+.token.inserted {
+  background-color: #ccffd8;
+}
+.token.deleted {
+  background-color: #ffebe9;
+}
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  color: #9a6e3a;
+}
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #836c28;
+}
+.token.function,
+.token.class-name {
+  color: #DD4A68;
+}
+.token.regex,
+.token.important,
+.token.variable {
+  color: #5c2699;
+}
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+</style>
+<style type="text/css">
 body {
+  font-family: sans-serif;
   max-width: 800px;
   margin: auto;
   padding: 1em;
   line-height: 1.5;
+  box-sizing: border-box;
 }
-tt, code, pre {
-  font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+body, .footnotes, code { font-size: .9em; }
+li li { font-size: .95em; }
+*, *:before, *:after {
+  box-sizing: inherit;
 }
-a:visited { color: #80007f; }
 pre, img { max-width: 100%; }
-code {
-  font-size: 92%;
-  border: 1px solid #ccc;
+pre, pre:hover {
+  white-space: pre-wrap;
+  word-break: break-all;
 }
-code[class] { background-color: #F8F8F8; }
-code.language-undefined { background-color: inherit; }
+pre code {
+  display: block;
+  overflow-x: auto;
+}
+code { font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace; }
+:not(pre) > code, code[class] { background-color: #F8F8F8; }
+code.language-undefined, pre > code:not([class]) {
+  background-color: inherit;
+  border: 1px solid #eee;
+}
 table {
   margin: auto;
   border-top: 1px solid #666;
-  border-bottom: 1px solid #666;
 }
 table thead th { border-bottom: 1px solid #ddd; }
 th, td { padding: 5px; }
 thead, tfoot, tr:nth-child(even) { background: #eee; }
 blockquote {
-  color:#666;
-  margin:0;
+  color: #666;
+  margin: 0;
   padding-left: 1em;
-  border-left: 0.5em #eee solid;
+  border-left: 0.5em solid #eee;
 }
-hr { border: 1px #ddd dashed; }
+hr, .footnotes::before { border: 1px dashed #ddd; }
+.frontmatter { text-align: center; }
+#TOC .numbered li { list-style: none; }
+#TOC .numbered { padding-left: 0; }
+#TOC .numbered ul { padding-left: 1em; }
+table, .body h2 { border-bottom: 1px solid #666; }
+.body .appendix, .appendix ~ h2 { border-bottom-style: dashed; }
+.footnote-ref a::before { content: "["; }
+.footnote-ref a::after { content: "]"; }
+.footnotes::before {
+  content: "";
+  display: block;
+  max-width: 20em;
+}
 
 @media print {
-  * {
-    background: transparent !important;
-    color: black !important;
-    filter:none !important;
-  }
   body {
     font-size: 12pt;
     max-width: 100%;
   }
-  a, a:visited { text-decoration: underline; }
-  hr {
-    visibility: hidden;
-    page-break-before: always;
-  }
-  pre, blockquote {
-    padding-right: 1em;
-    page-break-inside: avoid;
-  }
   tr, img { page-break-inside: avoid; }
-  img { max-width: 100% !important; }
-  @page :left { margin: 15mm 20mm 15mm 10mm; }
-  @page :right { margin: 15mm 10mm 15mm 20mm; }
-  p, h2, h3 { orphans: 3; widows: 3; }
-  h2, h3 { page-break-after: avoid; }
+}
+@media only screen and (min-width: 992px) {
+  pre { white-space: pre; }
 }
 </style>
-
-
-
 </head>
-
 <body>
-<h2>Input file for prediction</h2>
-<p>The <code>ReadMethylFile</code> is a function for reading DNA methylation files and use them as new data for prediction by every model. The input for this function should be either CSV or TSV file format. Please uncomment the following lines and run the function.</p>
-<h3>Usage</h3>
+<div class="include-before">
+</div>
+<div class="frontmatter">
+<div class="title"><h1>MBMethPred introduction</h1></div>
+<div class="author"><h2></h2></div>
+<div class="date"><h3></h3></div>
+</div>
+<div class="body">
+<h2 id="input-file-for-prediction">Input file for prediction</h2>
+<p>The <code>ReadMethylFile</code> is a function for reading DNA methylation beta values files and use them as new data for prediction by every model. The input for this function should be either CSV or TSV file format. Please uncomment the following lines and run the function.</p>
+<h3 id="usage_1">Usage</h3>
 <pre><code class="language-r"># set.seed(1234)
 # fac &lt;- ncol(Data1)
 # NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
@@ -93,25 +158,25 @@ hr { border: 1px #ddd dashed; }
 # write.csv(NewData, &quot;NewData.csv&quot;, quote = FALSE, row.names = FALSE)
 # methyl &lt;- ReadMethylFile(File = &quot;NewData.csv&quot;)
 </code></pre>
-<p>This function has only one argument, the File. While the first column is CpG methylation probs, starting with cg and followed by a number, other columns are samples with methylation values. All columns should be named.</p>
-<h2>Box plot</h2>
-<p>The <code>BoxPlot</code> function draws a box plot out of the DNA methylation dataset or other data frames.</p>
-<h3>Usage</h3>
+<p>This function has only one argument, the File. The first column of the File is the CpG methylation probe that starts with cg characters and is followed by a number (e.g., cg100091). Other columns are samples with methylation beta values. All columns in the data frame should have a name.</p>
+<h2 id="box-plot">Box plot</h2>
+<p>The <code>BoxPlot</code> function draws a box plot out of DNA methylation beta values or other data frames.</p>
+<h3 id="usage_2">Usage</h3>
 <pre><code class="language-r">
 data &lt;- Data2[1:20,]
 data &lt;- cbind(rownames(data), data)
 colnames(data)[1] &lt;- &quot;ID&quot;
 BoxPlot(File = data, Projname = NULL)
 </code></pre>
-<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-3" /></p>
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-3" /></p>
 <p>This function has two arguments as follow:</p>
 <ul>
 <li><code>File</code>    A data frame with the first column as ID.</li>
 <li><code>Projname</code> A string to name the plot.</li>
 </ul>
-<h2>t-SNE 3D plot</h2>
+<h2 id="t-sne-3d-plot">t-SNE 3D plot</h2>
 <p>The <code>TSNEPlot</code> function draws a 3D t-SNE plot for DNA methylation dataset using the K-means clustering technique. This function has two arguments <code>File</code> (any matrices) and <code>NCluster</code> ( number of clusters for K-Means clustering).</p>
-<h3>Usage</h3>
+<h3 id="usage_3">Usage</h3>
 <pre><code class="language-r">data &lt;- data.frame(t(Data2[1:100,]))
 data &lt;- cbind(rownames(data), data)
 colnames(data)[1] &lt;- &quot;ID&quot;
@@ -120,18 +185,18 @@ TSNEPlot(File = data, NCluster = 4)
 <p>An R window will appear with a 3D projection of the t-SNE result. The plot object can be saved with the next line of code (uncomment).</p>
 <pre><code class="language-r"># rgl.snapshot('tsne3d.png', fmt = 'png')
 </code></pre>
-<h2>Input file for similarity network fusion (SNF)</h2>
+<h2 id="input-file-for-similarity-network-fusion-snf">Input file for similarity network fusion (SNF)</h2>
 <p>Using <code>ReadSNFData</code> function, one can read files (any matrices with CSV or TSV format) and feed them into the similarity network fusion (SNF) function (from the SNFtools package). Please uncomment the following lines and run the function.</p>
-<h3>Usage</h3>
+<h3 id="usage_4">Usage</h3>
 <pre><code class="language-r"># data(Data2) # Gene expression 
 # Data2 &lt;- cbind(rownames(Data2), Data2)
 # colnames(Data2)[1] &lt;- &quot;ID&quot;
 # write.csv(Data2, &quot;Data2.csv&quot;, row.names = FALSE)
 # Data2 &lt;- ReadSNFData(File = &quot;Data2.csv&quot;)
 </code></pre>
-<h2>Similarity network fusion (SNF)</h2>
+<h2 id="similarity-network-fusion-snf">Similarity network fusion (SNF)</h2>
 <p>The <code>SimilarityNetworkFusion</code> is a function to perform SNF function (from SNFtool package) and output clusters.</p>
-<h3>Usage</h3>
+<h3 id="usage_5">Usage</h3>
 <pre><code class="language-r">data(RLabels) # Real labels
 data(Data2) # Methylation
 data(Data3) # Gene expression
@@ -154,7 +219,7 @@ snf &lt;- SimilarityNetworkFusion(Files = list(Data2, Data3),
 </code></pre>
 <p>This function has several arguments as follow:</p>
 <ul>
-<li><code>Files</code>   A list of data frames created using the ReadSNFData function or matrices.</li>
+<li><code>Files</code>   A list of data frames created using the ReadSNFData function.</li>
 <li><code>NNeighbors</code>    The number of nearest neighbors.</li>
 <li><code>Sigma</code>     The variance for local model.</li>
 <li><code>NClusters</code>   The number of clusters.</li>
@@ -162,11 +227,11 @@ snf &lt;- SimilarityNetworkFusion(Files = list(Data2, Data3),
 <li><code>RLabels</code>   The actual label of samples to calculate the Normalized Mutual Information (NMI) score. Optional.</li>
 <li><code>Niterations</code>   The number of iterations for the diffusion process.</li>
 </ul>
-<h2>Support vector machine model</h2>
-<p>The <code>SupportVectorMachineModel</code> is a function to train a support vector machine model to classify medulloblastoma subgroups using the DNA methylation dataset (Illumina Infinium HumanMethylation450). Prediction is followed by training if new data is provided.</p>
+<h2 id="support-vector-machine-model">Support vector machine model</h2>
+<p>The <code>SupportVectorMachineModel</code> is a function to train a support vector machine model to classify medulloblastoma subgroups using DNA methylation beta values (Illumina Infinium HumanMethylation450). Prediction is followed by training if new data is provided.</p>
 <p>Model metrics, including accuracy, precision, sensitivity F1-Score, specificity, and AUC_average can be calculated for the test dataset using the <code>ModelMetrics</code> function, which calculates the average of the above parameters from the result of the <code>ConfusionMatrix</code> function.</p>
 <p>The prediction result on new data can be accessed through the <code>NewDataPredictionResult</code> function, which calculates every prediction’s mode across the number of cross-validation folds.</p>
-<h3>Usage</h3>
+<h3 id="usage_6">Usage</h3>
 <pre><code class="language-r">set.seed(1234)
 fac &lt;- ncol(Data1)
 NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
@@ -201,11 +266,11 @@ NewDataPredictionResult(Model = svm)
 <li><code>SplitRatio</code>    Train and test split ratio. A value greater or equal to zero and less than one.</li>
 <li><code>CV</code>    The number of folds for cross-validation. It should be greater than one.</li>
 <li><code>NCores</code>    The number of cores for parallel computing.</li>
-<li><code>NewData</code>    A methylation data for prediction.</li>
+<li><code>NewData</code>    A methylation beta values input from the ReadMethylFile function.</li>
 </ul>
-<h2>K nearest neighbor model</h2>
-<p>The <code>KNearestNeighborModel</code> is a function to train a K nearest neighbor model to classify medulloblastoma subgroups using the DNA methylation dataset.</p>
-<h3>Usage</h3>
+<h2 id="k-nearest-neighbor-model">K nearest neighbor model</h2>
+<p>The <code>KNearestNeighborModel</code> is a function to train a K nearest neighbor model to classify medulloblastoma subgroups using DNA methylation beta values.</p>
+<h3 id="usage_7">Usage</h3>
 <pre><code class="language-r">set.seed(1234)
 fac &lt;- ncol(Data1)
 NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
@@ -242,11 +307,11 @@ NewDataPredictionResult(Model = knn)
 <li><code>CV</code>    The number of folds for cross-validation. It should be greater than one.</li>
 <li><code>K</code>   The number of nearest neighbors.</li>
 <li><code>NCores</code>    The number of cores for parallel computing.</li>
-<li><code>NewData</code>    A methylation data for prediction.</li>
+<li><code>NewData</code>    A methylation beta values input from the ReadMethylFile function.</li>
 </ul>
-<h2>Random forest model</h2>
-<p>The <code>RandomForestModel</code> is a function to train a random forest model to classify medulloblastoma subgroups using the DNA methylation dataset.</p>
-<h3>Usage</h3>
+<h2 id="random-forest-model">Random forest model</h2>
+<p>The <code>RandomForestModel</code> is a function to train a random forest model to classify medulloblastoma subgroups using DNA methylation beta values.</p>
+<h3 id="usage_8">Usage</h3>
 <pre><code class="language-r">set.seed(1234)
 fac &lt;- ncol(Data1)
 NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
@@ -283,11 +348,11 @@ NewDataPredictionResult(Model = rf)
 <li><code>CV</code>    The number of folds for cross-validation. It should be greater than one.</li>
 <li><code>NTree</code>   The number of trees to be grown.</li>
 <li><code>NCores</code>    The number of cores for parallel computing.</li>
-<li><code>NewData</code>  A methylation data for prediction.</li>
+<li><code>NewData</code>  A methylation beta values input from the ReadMethylFile function.</li>
 </ul>
-<h2>XGBoost model</h2>
-<p>The <code>XGBoostModel</code> is a A function to train an XGBoost model to classify medulloblastoma subgroups using the DNA methylation dataset.</p>
-<h3>Usage</h3>
+<h2 id="xgboost-model">XGBoost model</h2>
+<p>The <code>XGBoostModel</code> is a A function to train an XGBoost model to classify medulloblastoma subgroups using DNA methylation beta values.</p>
+<h3 id="usage_9">Usage</h3>
 <pre><code class="language-r">set.seed(1234)
 fac &lt;- ncol(Data1)
 NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
@@ -373,27 +438,27 @@ xgboost &lt;- XGBoostModel(SplitRatio = 0.8,
 #&gt; [1]	train-mlogloss:0.391327 
 #&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
 #&gt; 
-#&gt; [2]	train-mlogloss:0.178571 
-#&gt; [3]	train-mlogloss:0.086584 
-#&gt; [4]	train-mlogloss:0.043455 
-#&gt; [5]	train-mlogloss:0.022545 
-#&gt; [6]	train-mlogloss:0.012333 
-#&gt; [7]	train-mlogloss:0.007139 
-#&gt; [8]	train-mlogloss:0.004347 
-#&gt; [9]	train-mlogloss:0.002808 
-#&gt; [10]	train-mlogloss:0.002392 
+#&gt; [2]	train-mlogloss:0.178573 
+#&gt; [3]	train-mlogloss:0.086585 
+#&gt; [4]	train-mlogloss:0.043456 
+#&gt; [5]	train-mlogloss:0.022623 
+#&gt; [6]	train-mlogloss:0.012235 
+#&gt; [7]	train-mlogloss:0.007101 
+#&gt; [8]	train-mlogloss:0.004310 
+#&gt; [9]	train-mlogloss:0.002876 
+#&gt; [10]	train-mlogloss:0.002484 
 #&gt; [1]	train-mlogloss:0.387270 
 #&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
 #&gt; 
 #&gt; [2]	train-mlogloss:0.176343 
-#&gt; [3]	train-mlogloss:0.085785 
-#&gt; [4]	train-mlogloss:0.042867 
-#&gt; [5]	train-mlogloss:0.022099 
-#&gt; [6]	train-mlogloss:0.011727 
-#&gt; [7]	train-mlogloss:0.006694 
-#&gt; [8]	train-mlogloss:0.003969 
-#&gt; [9]	train-mlogloss:0.002619 
-#&gt; [10]	train-mlogloss:0.002393 
+#&gt; [3]	train-mlogloss:0.085810 
+#&gt; [4]	train-mlogloss:0.042979 
+#&gt; [5]	train-mlogloss:0.022061 
+#&gt; [6]	train-mlogloss:0.011726 
+#&gt; [7]	train-mlogloss:0.006691 
+#&gt; [8]	train-mlogloss:0.004024 
+#&gt; [9]	train-mlogloss:0.002633 
+#&gt; [10]	train-mlogloss:0.002421 
 #&gt; [1]	train-mlogloss:0.385785 
 #&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
 #&gt; 
@@ -442,11 +507,11 @@ NewDataPredictionResult(Model = xgboost)
 <li><code>SplitRatio</code>    Train and test split ratio. A value greater or equal to zero and less than one.</li>
 <li><code>CV</code>    The number of folds for cross-validation. It should be greater than one.</li>
 <li><code>NCores</code>    The number of cores for parallel computing.</li>
-<li><code>NewData</code>  A methylation data for prediction.</li>
+<li><code>NewData</code>  A methylation beta values input from the ReadMethylFile function.</li>
 </ul>
-<h2>Linear discriminant analysis model</h2>
-<p>The <code>LinearDiscriminantAnalysisModel</code> is a function to train a linear discriminant analysis model to classify medulloblastoma subgroups using the DNA methylation dataset.</p>
-<h3>Usage</h3>
+<h2 id="linear-discriminant-analysis-model">Linear discriminant analysis model</h2>
+<p>The <code>LinearDiscriminantAnalysisModel</code> is a function to train a linear discriminant analysis model to classify medulloblastoma subgroups using DNA methylation beta values.</p>
+<h3 id="usage_10">Usage</h3>
 <pre><code class="language-r">set.seed(1234)
 fac &lt;- ncol(Data1)
 NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
@@ -481,11 +546,11 @@ NewDataPredictionResult(Model = lda)
 <li><code>SplitRatio</code>    Train and test split ratio. A value greater or equal to zero and less than one.</li>
 <li><code>CV</code>    The number of folds for cross-validation. It should be greater than one.</li>
 <li><code>NCores</code>    The number of cores for parallel computing.</li>
-<li><code>NewData</code>  A methylation data for prediction.</li>
+<li><code>NewData</code>  A methylation beta values input from the ReadMethylFile function.</li>
 </ul>
-<h2>Naive bayes model</h2>
-<p>The <code>NaiveBayesModel</code> is a function to train a Naive Bayes model to classify medulloblastoma subgroups using the DNA methylation dataset.</p>
-<h3>Usage</h3>
+<h2 id="naive-bayes-model">Naive bayes model</h2>
+<p>The <code>NaiveBayesModel</code> is a function to train a Naive Bayes model to classify medulloblastoma subgroups using DNA methylation beta values.</p>
+<h3 id="usage_11">Usage</h3>
 <pre><code class="language-r">set.seed(1234)
 fac &lt;- ncol(Data1)
 NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
@@ -522,11 +587,11 @@ NewDataPredictionResult(Model = nb)
 <li><code>CV</code>    The number of folds for cross-validation. It should be greater than one.</li>
 <li><code>Threshold</code>   The threshold for deciding class probability. A value greater or equal to zero and less than one.</li>
 <li><code>NCores</code>    The number of cores for parallel computing.</li>
-<li><code>NewData</code>  A methylation data for prediction.</li>
+<li><code>NewData</code>  A methylation beta values input from the ReadMethylFile function.</li>
 </ul>
-<h2>Artificial neural network model</h2>
-<p>The <code>NeuralNetworkModel</code> is a function to train an artificial neural network model to classify medulloblastoma subgroups using the DNA methylation dataset. Please uncomment the following lines and run the function. If it is the first time you run this function, set the InstallTensorFlow parameter to TRUE. It will automatically install the Python and TensorFlow library (version 2.10-cpu) in a virtual environment. Then set the parameter to FALSE.</p>
-<h3>Usage</h3>
+<h2 id="artificial-neural-network-model">Artificial neural network model</h2>
+<p>The <code>NeuralNetworkModel</code> is a function to train an artificial neural network model to classify medulloblastoma subgroups using DNA methylation beta values. Please uncomment the following lines and run the function. If it is the first time you run this function, set the InstallTensorFlow parameter to TRUE. It will automatically install the Python and TensorFlow library (version 2.10-cpu) in a virtual environment then set the parameter to FALSE.</p>
+<h3 id="usage_12">Usage</h3>
 <pre><code class="language-r"># set.seed(1234)
 # fac &lt;- ncol(Data1)
 # NewData &lt;- sample(data.frame(t(Data1[,-fac])),10)
@@ -541,12 +606,13 @@ NewDataPredictionResult(Model = nb)
 <p>This function has the following arguments:</p>
 <ul>
 <li><code>Epochs</code>    The number of epochs.</li>
-<li><code>NewData</code>   A methylation data from ReadMethylFile function.</li>
+<li><code>NewData</code>   A methylation beta values input from the ReadMethylFile function.</li>
 <li><code>InstallTensorFlow</code>   Logical. Running this function for the first time, you need to install TensorFlow library (V 2.10-cpu). Default is TRUE.</li>
 </ul>
-
-
-<script src="https://cdn.jsdelivr.net/combine/npm/@xiee/utils/js/center-img.min.js" async></script>
+</div>
+<div class="include-after">
+</div>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js" defer></script>
 </body>
-
 </html>
