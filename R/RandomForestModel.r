@@ -65,13 +65,14 @@ RandomForestModel <- function(SplitRatio = 0.8,
                                              maxnodes = 6,
                                              na.action = na.omit)
     y_pred <- predict(classifier, newdata = test_fold[-fac])
+    conta <- table(test_fold[, fac], y_pred)
     result <- ConfusionMatrix(test_fold[, fac], y_pred)
     if(!is.null(NewData)) {
     y_pred_NewData <- predict(classifier, newdata = NewData)
     } else {
       y_pred_NewData <- NULL
     }
-    allresult <- list(result = result, pnewdata = y_pred_NewData)
+    allresult <- list(ConfusionMat = conta, result = result, pnewdata = y_pred_NewData)
     return(allresult)
   }, mc.cores = NCores)
   return(cv)

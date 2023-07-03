@@ -243,6 +243,15 @@ svm &lt;- SupportVectorMachineModel(SplitRatio = 0.8,
                                  NCores = 1, 
                                  NewData = NewData)
 ModelMetrics(Model = svm)
+#&gt; $ConfusionMatrix
+#&gt;         y_pred
+#&gt;          Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  41   0      0
+#&gt;   WNT         1   0  37      0
+#&gt;   Group4      1   0   0     59
+#&gt; 
+#&gt; $ModelPerformance
 #&gt;        Accuracy Precision Sensitivity F1_Score Specificity AUC_average
 #&gt; Group3    0.988     0.932       0.996    0.963       0.986       0.985
 #&gt; SHH       1.000     1.000       1.000    1.000       1.000       0.985
@@ -283,6 +292,15 @@ knn &lt;- KNearestNeighborModel(SplitRatio = 0.8,
                              NCores = 1, 
                              NewData = NewData)
 ModelMetrics(Model = knn)
+#&gt; $ConfusionMatrix
+#&gt;         knnclass_pred
+#&gt;          Group3 SHH WNT Group4
+#&gt;   Group3     25   0   0      1
+#&gt;   SHH         0  41   0      0
+#&gt;   WNT         0   0  38      0
+#&gt;   Group4      1   0   0     59
+#&gt; 
+#&gt; $ModelPerformance
 #&gt;        Accuracy Precision Sensitivity F1_Score Specificity AUC_average
 #&gt; Group3    0.993     0.981       0.973    0.977       0.996       0.985
 #&gt; SHH       0.999     1.000       0.997    0.999       1.000       0.985
@@ -324,6 +342,15 @@ rf &lt;- RandomForestModel(SplitRatio = 0.8,
                         NCores = 1, 
                         NewData = NewData)
 ModelMetrics(Model = rf)
+#&gt; $ConfusionMatrix
+#&gt;         y_pred
+#&gt;          Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  41   0      0
+#&gt;   WNT         0   0  38      0
+#&gt;   Group4      0   0   0     60
+#&gt; 
+#&gt; $ModelPerformance
 #&gt;        Accuracy Precision Sensitivity F1_Score Specificity AUC_average
 #&gt; Group3    0.999     1.000       0.996    0.998       1.000       0.998
 #&gt; SHH       1.000     1.000       1.000    1.000       1.000       0.998
@@ -484,6 +511,15 @@ xgboost &lt;- XGBoostModel(SplitRatio = 0.8,
 #&gt; [9]	train-mlogloss:0.002729 
 #&gt; [10]	train-mlogloss:0.002506
 ModelMetrics(Model = xgboost)
+#&gt; $ConfusionMatrix
+#&gt;         y_pred
+#&gt; y_truth  Group3 Group4 SHH WNT
+#&gt;   Group3     24      1   0   1
+#&gt;   Group4      2     58   0   0
+#&gt;   SHH         0      0  41   0
+#&gt;   WNT         3      0   0  35
+#&gt; 
+#&gt; $ModelPerformance
 #&gt;        Accuracy Precision Sensitivity F1_Score Specificity AUC_average
 #&gt; Group3    0.979     0.896       0.981    0.936       0.978       0.968
 #&gt; Group4    0.993     0.990       0.991    0.991       0.994       0.968
@@ -523,6 +559,15 @@ lda &lt;- LinearDiscriminantAnalysisModel(SplitRatio = 0.8,
                                        NCores = 1, 
                                        NewData = NewData)
 ModelMetrics(Model = lda)
+#&gt; $ConfusionMatrix
+#&gt;         y_pred
+#&gt;          Group3 SHH WNT Group4
+#&gt;   Group3     22   1   0      3
+#&gt;   SHH         0  41   0      0
+#&gt;   WNT         0   0  38      0
+#&gt;   Group4      4   1   0     55
+#&gt; 
+#&gt; $ModelPerformance
 #&gt;        Accuracy Precision Sensitivity F1_Score Specificity AUC_average
 #&gt; Group3    0.941     0.778       0.889    0.828       0.951        0.91
 #&gt; SHH       0.994     0.991       0.985    0.988       0.997        0.91
@@ -563,6 +608,15 @@ nb &lt;- NaiveBayesModel(SplitRatio = 0.8,
                       NCores = 1, 
                       NewData = NewData)
 ModelMetrics(Model = nb)
+#&gt; $ConfusionMatrix
+#&gt;         y_pred
+#&gt;          Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  41   0      0
+#&gt;   WNT         3   0  35      0
+#&gt;   Group4      1   0   0     59
+#&gt; 
+#&gt; $ModelPerformance
 #&gt;        Accuracy Precision Sensitivity F1_Score Specificity AUC_average
 #&gt; Group3    0.974     0.859       1.000    0.924       0.969       0.971
 #&gt; SHH       1.000     1.000       1.000    1.000       1.000       0.971

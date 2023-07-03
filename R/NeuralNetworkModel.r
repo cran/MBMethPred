@@ -108,6 +108,7 @@ NeuralNetworkModel <- function(Epochs = 100,
   y_test <- max.col(y_test)
   y_test <- factor(y_test, levels = c(1:4),
                    labels = c("Group3", "Group4", "SHH","WNT"))
+  conta <- table(y_test, y_pred)
   result <- ConfusionMatrix(y_test, y_pred)
   if(!is.null(NewData)) {
     y_pred_NewData <- model %>% predict(NewData)
@@ -119,6 +120,6 @@ NeuralNetworkModel <- function(Epochs = 100,
   } else {
     y_pred_NewData <- NULL
   }
-  allresult <- list(result = result, pnewdata = y_pred_NewData)
+  allresult <- list(ConfusionMat = conta, result = result, pnewdata = y_pred_NewData)
   return(allresult)
 }

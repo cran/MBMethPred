@@ -77,8 +77,13 @@ XGBoostModel <- function(SplitRatio = 0.8,
                               objective = "multi:softmax" ,
                               num_class = 4)
     y_pred <- predict(model, test_data)
+    groups <- c("Group3", "Group4", "SHH","WNT")
     result <- ConfusionMatrix(test_label, y_pred)
-    rownames(result) <- c("Group3", "Group4", "SHH","WNT")
+    rownames(result) <- groups
+    y_truth <- test_label
+    conta <- table(y_truth, y_pred)
+    rownames(conta) <- groups
+    colnames(conta) <- groups
     if(!is.null(NewData)) {
       NewData <- as.matrix(NewData)
       NewData <- NewData[, order(colnames(NewData))]
@@ -89,7 +94,7 @@ XGBoostModel <- function(SplitRatio = 0.8,
     } else {
       y_pred_NewData <- NULL
     }
-    allresult <- list(result = result, pnewdata = y_pred_NewData)
+    allresult <- list(ConfusionMat = conta, result = result, pnewdata = y_pred_NewData)
     return(allresult)
   }, mc.cores = NCores)
 }

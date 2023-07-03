@@ -10,7 +10,7 @@ ModelMetrics(Model)
 \item{Model}{A trained model.}
 }
 \value{
-A data frame
+A list
 }
 \description{
 A function to extract the confusion matrix information.

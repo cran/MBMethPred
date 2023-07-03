@@ -73,8 +73,9 @@ KNearestNeighborModel <- function(SplitRatio = 0.8,
     } else {
       knnclass_prednew <- NULL
     }
+    conta <- table(test_fold[, fac], knnclass_pred)
     result <- ConfusionMatrix(test_fold[, fac], knnclass_pred)
-    allresult <- list(result = result, pnewdata = knnclass_prednew)
+    allresult <- list(ConfusionMat = conta, result = result, pnewdata = knnclass_prednew)
     return(allresult)
   }, mc.cores = NCores)
 }
