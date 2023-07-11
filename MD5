@@ -1,7 +1,7 @@
-86c2158ac7f4b6b80377ad43f2171b70 *DESCRIPTION
+8cc26610ef3566b5ce2ea042c7713ee9 *DESCRIPTION
 49fed6920572240613d83acbe6e3d67d *NAMESPACE
 200fa7de0308901117d99052d82db44d *R/BoxPlot.r
-937216d729d2a64710db9e2a32d19d87 *R/ConfusionMarix.r
+e3e204921ede8a91ce59facc7ea97882 *R/ConfusionMarix.r
 ba7e56aae9d0f7ab5d0e3e312e05bd98 *R/Data1.r
 10d0d78038043a402d3d13f420fa283e *R/Data2.r
 f970a65214eb03be23b1c6eca77b5847 *R/Data3.r
@@ -26,8 +26,8 @@ aa8036fc42f24b191078e41c55cbf5f4 *R/SimilarityNetworkFusion.r
 c52aa22643384df82cff11298b08153b *data/Data3.RData
 96c6252c06e2ed243e9ec07aca189bb5 *data/RLabels.RData
 5e055420f464ad402798da76bda07e9a *inst/doc/MBMethPred_introduction.R
-2768ee66d08dc7974203fab88c6d8c2b *inst/doc/MBMethPred_introduction.Rmd
-2d1f441293cd53f2ac7921049a905c6b *inst/doc/MBMethPred_introduction.html
+a04304d7f8dbca012c9daf7dca1eb3fa *inst/doc/MBMethPred_introduction.Rmd
+72c33475248e66f85dc39abf39e4490a *inst/doc/MBMethPred_introduction.html
 ca9dace57f14e43532c97c8735c1986e *man/BoxPlot.Rd
 f303d9d38f85b527d3fdb0dd994bce0b *man/ConfusionMatrix.Rd
 e398947c48aa378ec4ece0e755851105 *man/Data1.Rd
@@ -60,4 +60,4 @@ c50486fa9a831e5ad3c04a7054b67823 *tests/testthat/test-SimilarityNetworkFusion.r
 912b48305b156d992d5874867a9ffae0 *tests/testthat/test-SupportVectorMachineModel.R
 325fde7f565232ff183504223fd225be *tests/testthat/test-TSNEPlot.R
 d3327a8031bacd2bb1ca72449b2fbe58 *tests/testthat/test-XGBoostModel.R
-2768ee66d08dc7974203fab88c6d8c2b *vignettes/MBMethPred_introduction.Rmd
+a04304d7f8dbca012c9daf7dca1eb3fa *vignettes/MBMethPred_introduction.Rmd

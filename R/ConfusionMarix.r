@@ -65,6 +65,8 @@ ConfusionMatrix <- function(y_true, y_pred){
       AUC <- pROC::roc(as.numeric(y_true) ~ as.numeric(y_pred), quiet = T)$auc[1]
       f1_score <- 2*(Precision*Sensitivity)/(Precision + Sensitivity)
       result <- round(data.frame(Accuracy = Accuracy, Precision = Precision, Sensitivity = Sensitivity , F1_Score = f1_score, Specificity = Specificity, AUC = AUC),3)
+      print(cm)
+      cat("\n")
       return(result)
     }
     else if (NROW(cm) > 2 | NCOL(cm) > 2){
@@ -109,6 +111,8 @@ ConfusionMatrix <- function(y_true, y_pred){
       result <- round(cbind(a, p, se, f1, sp, au),3)
       colnames(result) <- c("Accuracy", "Precision", "Sensitivity", "F1_Score", "Specificity", "AUC_average")
       rownames(result) <- rownames(cm)
+      print(cm)
+      cat("\n")
       return(result)
     }
   }

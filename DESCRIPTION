@@ -1,7 +1,7 @@
 Package: MBMethPred
 Type: Package
 Title: Medulloblastoma Subgroups Prediction
-Version: 0.1.2
+Version: 0.1.4
 Date: 2023-07-02
 Description: Utilizing a combination of machine learning models (Random Forest, Naive Bayes, K-Nearest Neighbor, Support Vector Machines, Extreme Gradient Boosting, and Linear Discriminant Analysis) and a deep Artificial Neural Network model, 'MBMethPred' can predict medulloblastoma subgroups, including wingless (WNT), sonic hedgehog (SHH), Group 3, and Group 4 from DNA methylation beta values.
 Authors@R: c(
@@ -23,7 +23,7 @@ Suggests: knitr, rmarkdown, testthat, utils, stats, scales
 Config/testthat/edition: 3
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2023-07-02 16:03:05 UTC; edi
+Packaged: 2023-07-09 07:33:35 UTC; edi
 Author: Edris Sharif Rahmani [aut, ctb, cre]
     (<https://orcid.org/0000-0002-7899-1663>),
   Ankita Sunil Lawarde [aut, ctb]
@@ -31,4 +31,4 @@ Author: Edris Sharif Rahmani [aut, ctb, cre]
   Vijayachitra Modhukur [aut, ctb]
     (<https://orcid.org/0000-0002-7123-9903>)
 Repository: CRAN
-Date/Publication: 2023-07-03 06:50:02 UTC
+Date/Publication: 2023-07-11 12:00:28 UTC

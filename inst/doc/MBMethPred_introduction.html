@@ -147,6 +147,7 @@ table, .body h2 { border-bottom: 1px solid #666; }
 <div class="date"><h3></h3></div>
 </div>
 <div class="body">
+<p>MBMethPred is a user-friendly package developed for the accurate prediction of medulloblastoma subgroups using DNA methylation beta values. It incorporates seven machine learning models, including Random Forest, K-Nearest Neighbors, Support Vector Machine, Linear Discriminant Analysis, Extreme Gradient Boosting, Naive Bayes, and a neural network model specifically designed for the complexities of medulloblastoma data. The package provides streamlined workflows for data preprocessing, feature selection, model training, cross-validation, and prediction. This vignette offers detailed explanations, examples, and resulting outputs for each functionality. The MBMethPred package was tested on an Ubuntu machine equipped with an Intel Core i5-6200U processor and 16GB RAM.</p>
 <h2 id="input-file-for-prediction">Input file for prediction</h2>
 <p>The <code>ReadMethylFile</code> is a function for reading DNA methylation beta values files and use them as new data for prediction by every model. The input for this function should be either CSV or TSV file format. Please uncomment the following lines and run the function.</p>
 <h3 id="usage_1">Usage</h3>
@@ -242,6 +243,75 @@ svm &lt;- SupportVectorMachineModel(SplitRatio = 0.8,
                                  CV = 10, 
                                  NCores = 1, 
                                  NewData = NewData)
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  41   0      0
+#&gt;   WNT         1   0  37      0
+#&gt;   Group4      1   0   0     59
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     28   0   0      0
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         1   0  36      0
+#&gt;   Group4      1   0   0     59
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     27   0   0      0
+#&gt;   SHH         0  43   0      0
+#&gt;   WNT         1   0  35      0
+#&gt;   Group4      1   0   0     60
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  39   0      0
+#&gt;   WNT         0   0  38      0
+#&gt;   Group4      1   0   0     57
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         1   0  37      0
+#&gt;   Group4      1   0   0     56
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     27   0   0      0
+#&gt;   SHH         0  40   0      0
+#&gt;   WNT         1   0  37      0
+#&gt;   Group4      2   0   0     52
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     24   0   0      0
+#&gt;   SHH         0  40   0      0
+#&gt;   WNT         1   0  38      0
+#&gt;   Group4      1   0   0     55
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     25   0   0      0
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         1   0  34      0
+#&gt;   Group4      0   0   0     61
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     25   0   0      1
+#&gt;   SHH         0  43   0      0
+#&gt;   WNT         1   0  39      0
+#&gt;   Group4      1   0   0     59
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         1   0  38      0
+#&gt;   Group4      1   0   0     57
 ModelMetrics(Model = svm)
 #&gt; $ConfusionMatrix
 #&gt;         y_pred
@@ -291,6 +361,75 @@ knn &lt;- KNearestNeighborModel(SplitRatio = 0.8,
                              K = 3, 
                              NCores = 1, 
                              NewData = NewData)
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     25   0   0      1
+#&gt;   SHH         0  41   0      0
+#&gt;   WNT         0   0  38      0
+#&gt;   Group4      1   0   0     59
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     27   0   0      1
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         0   0  37      0
+#&gt;   Group4      1   0   0     59
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      1
+#&gt;   SHH         0  43   0      0
+#&gt;   WNT         0   0  36      0
+#&gt;   Group4      0   0   0     61
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  38   1      0
+#&gt;   WNT         0   0  38      0
+#&gt;   Group4      0   0   0     58
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     25   0   0      1
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         0   0  38      0
+#&gt;   Group4      0   0   0     57
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     27   0   0      0
+#&gt;   SHH         0  40   0      0
+#&gt;   WNT         0   0  38      0
+#&gt;   Group4      1   0   0     53
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     23   0   0      1
+#&gt;   SHH         0  40   0      0
+#&gt;   WNT         0   0  39      0
+#&gt;   Group4      1   0   0     55
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     24   0   0      1
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         0   0  35      0
+#&gt;   Group4      1   0   0     60
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  43   0      0
+#&gt;   WNT         0   0  40      0
+#&gt;   Group4      0   0   0     60
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     25   0   0      1
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         0   0  39      0
+#&gt;   Group4      0   0   0     58
 ModelMetrics(Model = knn)
 #&gt; $ConfusionMatrix
 #&gt;         knnclass_pred
@@ -341,6 +480,75 @@ rf &lt;- RandomForestModel(SplitRatio = 0.8,
                         NTree = 100, 
                         NCores = 1, 
                         NewData = NewData)
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  41   0      0
+#&gt;   WNT         0   0  38      0
+#&gt;   Group4      0   0   0     60
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     28   0   0      0
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         0   0  37      0
+#&gt;   Group4      0   0   0     60
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     27   0   0      0
+#&gt;   SHH         0  43   0      0
+#&gt;   WNT         0   0  36      0
+#&gt;   Group4      0   0   0     61
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  39   0      0
+#&gt;   WNT         0   0  38      0
+#&gt;   Group4      0   0   0     58
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         0   0  38      0
+#&gt;   Group4      0   0   0     57
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      1
+#&gt;   SHH         0  40   0      0
+#&gt;   WNT         0   0  38      0
+#&gt;   Group4      0   0   0     54
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     24   0   0      0
+#&gt;   SHH         0  40   0      0
+#&gt;   WNT         0   0  39      0
+#&gt;   Group4      0   0   0     56
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     25   0   0      0
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         0   0  35      0
+#&gt;   Group4      0   0   0     61
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  43   0      0
+#&gt;   WNT         0   0  40      0
+#&gt;   Group4      0   0   0     60
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         0   0  39      0
+#&gt;   Group4      0   0   0     58
 ModelMetrics(Model = rf)
 #&gt; $ConfusionMatrix
 #&gt;         y_pred
@@ -402,6 +610,13 @@ xgboost &lt;- XGBoostModel(SplitRatio = 0.8,
 #&gt; [8]	train-mlogloss:0.004395 
 #&gt; [9]	train-mlogloss:0.002879 
 #&gt; [10]	train-mlogloss:0.002457 
+#&gt;       y_pred
+#&gt; y_true  0  1  2  3
+#&gt;      0 24  1  0  1
+#&gt;      1  2 58  0  0
+#&gt;      2  0  0 41  0
+#&gt;      3  3  0  0 35
+#&gt; 
 #&gt; [1]	train-mlogloss:0.388419 
 #&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
 #&gt; 
@@ -414,6 +629,13 @@ xgboost &lt;- XGBoostModel(SplitRatio = 0.8,
 #&gt; [8]	train-mlogloss:0.004413 
 #&gt; [9]	train-mlogloss:0.002823 
 #&gt; [10]	train-mlogloss:0.002431 
+#&gt;       y_pred
+#&gt; y_true  0  1  2  3
+#&gt;      0 28  0  0  0
+#&gt;      1  0 60  0  0
+#&gt;      2  0  1 41  0
+#&gt;      3  3  0  0 34
+#&gt; 
 #&gt; [1]	train-mlogloss:0.388072 
 #&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
 #&gt; 
@@ -426,6 +648,13 @@ xgboost &lt;- XGBoostModel(SplitRatio = 0.8,
 #&gt; [8]	train-mlogloss:0.004304 
 #&gt; [9]	train-mlogloss:0.002808 
 #&gt; [10]	train-mlogloss:0.002544 
+#&gt;       y_pred
+#&gt; y_true  0  1  2  3
+#&gt;      0 27  0  0  0
+#&gt;      1  0 61  0  0
+#&gt;      2  0  1 42  0
+#&gt;      3  3  0  0 33
+#&gt; 
 #&gt; [1]	train-mlogloss:0.386945 
 #&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
 #&gt; 
@@ -438,6 +667,13 @@ xgboost &lt;- XGBoostModel(SplitRatio = 0.8,
 #&gt; [8]	train-mlogloss:0.004246 
 #&gt; [9]	train-mlogloss:0.002766 
 #&gt; [10]	train-mlogloss:0.002319 
+#&gt;       y_pred
+#&gt; y_true  0  1  2  3
+#&gt;      0 25  1  0  0
+#&gt;      1  0 58  0  0
+#&gt;      2  0  0 39  0
+#&gt;      3  1  0  0 37
+#&gt; 
 #&gt; [1]	train-mlogloss:0.387957 
 #&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
 #&gt; 
@@ -450,6 +686,13 @@ xgboost &lt;- XGBoostModel(SplitRatio = 0.8,
 #&gt; [8]	train-mlogloss:0.004478 
 #&gt; [9]	train-mlogloss:0.002934 
 #&gt; [10]	train-mlogloss:0.002514 
+#&gt;       y_pred
+#&gt; y_true  0  1  2  3
+#&gt;      0 26  0  0  0
+#&gt;      1  2 55  0  0
+#&gt;      2  0  0 42  0
+#&gt;      3  2  0  0 36
+#&gt; 
 #&gt; [1]	train-mlogloss:0.390082 
 #&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
 #&gt; 
@@ -462,6 +705,13 @@ xgboost &lt;- XGBoostModel(SplitRatio = 0.8,
 #&gt; [8]	train-mlogloss:0.004434 
 #&gt; [9]	train-mlogloss:0.002923 
 #&gt; [10]	train-mlogloss:0.002552 
+#&gt;       y_pred
+#&gt; y_true  0  1  2  3
+#&gt;      0 27  0  0  0
+#&gt;      1  1 53  0  0
+#&gt;      2  0  0 39  1
+#&gt;      3  3  0  0 35
+#&gt; 
 #&gt; [1]	train-mlogloss:0.391327 
 #&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
 #&gt; 
@@ -474,6 +724,13 @@ xgboost &lt;- XGBoostModel(SplitRatio = 0.8,
 #&gt; [8]	train-mlogloss:0.004310 
 #&gt; [9]	train-mlogloss:0.002876 
 #&gt; [10]	train-mlogloss:0.002484 
+#&gt;       y_pred
+#&gt; y_true  0  1  2  3
+#&gt;      0 24  0  0  0
+#&gt;      1  0 56  0  0
+#&gt;      2  0  0 40  0
+#&gt;      3  3  0  0 36
+#&gt; 
 #&gt; [1]	train-mlogloss:0.387270 
 #&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
 #&gt; 
@@ -486,6 +743,13 @@ xgboost &lt;- XGBoostModel(SplitRatio = 0.8,
 #&gt; [8]	train-mlogloss:0.004024 
 #&gt; [9]	train-mlogloss:0.002633 
 #&gt; [10]	train-mlogloss:0.002421 
+#&gt;       y_pred
+#&gt; y_true  0  1  2  3
+#&gt;      0 25  0  0  0
+#&gt;      1  0 61  0  0
+#&gt;      2  0  0 41  1
+#&gt;      3  2  0  0 33
+#&gt; 
 #&gt; [1]	train-mlogloss:0.385785 
 #&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
 #&gt; 
@@ -498,6 +762,13 @@ xgboost &lt;- XGBoostModel(SplitRatio = 0.8,
 #&gt; [8]	train-mlogloss:0.004281 
 #&gt; [9]	train-mlogloss:0.002846 
 #&gt; [10]	train-mlogloss:0.002425 
+#&gt;       y_pred
+#&gt; y_true  0  1  2  3
+#&gt;      0 25  1  0  0
+#&gt;      1  0 60  0  0
+#&gt;      2  0  0 43  0
+#&gt;      3  2  0  0 38
+#&gt; 
 #&gt; [1]	train-mlogloss:0.388743 
 #&gt; Will train until train_mlogloss hasn't improved in 10 rounds.
 #&gt; 
@@ -509,7 +780,13 @@ xgboost &lt;- XGBoostModel(SplitRatio = 0.8,
 #&gt; [7]	train-mlogloss:0.007023 
 #&gt; [8]	train-mlogloss:0.004200 
 #&gt; [9]	train-mlogloss:0.002729 
-#&gt; [10]	train-mlogloss:0.002506
+#&gt; [10]	train-mlogloss:0.002506 
+#&gt;       y_pred
+#&gt; y_true  0  1  2  3
+#&gt;      0 25  1  0  0
+#&gt;      1  0 58  0  0
+#&gt;      2  0  0 42  0
+#&gt;      3  3  0  0 36
 ModelMetrics(Model = xgboost)
 #&gt; $ConfusionMatrix
 #&gt;         y_pred
@@ -558,6 +835,75 @@ lda &lt;- LinearDiscriminantAnalysisModel(SplitRatio = 0.8,
                                        CV = 10, 
                                        NCores = 1, 
                                        NewData = NewData)
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     22   1   0      3
+#&gt;   SHH         0  41   0      0
+#&gt;   WNT         0   0  38      0
+#&gt;   Group4      4   1   0     55
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      2
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         1   0  36      0
+#&gt;   Group4      6   0   0     54
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     22   0   1      4
+#&gt;   SHH         0  43   0      0
+#&gt;   WNT         1   0  35      0
+#&gt;   Group4      7   0   1     53
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     24   0   1      1
+#&gt;   SHH         0  38   0      1
+#&gt;   WNT         0   0  38      0
+#&gt;   Group4      9   0   0     49
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     25   0   0      1
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         0   0  37      1
+#&gt;   Group4      2   0   0     55
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     24   0   0      3
+#&gt;   SHH         1  38   0      1
+#&gt;   WNT         0   0  38      0
+#&gt;   Group4      3   0   0     51
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     22   0   0      2
+#&gt;   SHH         1  39   0      0
+#&gt;   WNT         1   0  38      0
+#&gt;   Group4      6   0   0     50
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     23   0   0      2
+#&gt;   SHH         0  41   0      1
+#&gt;   WNT         1   0  34      0
+#&gt;   Group4     11   0   1     49
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     22   1   0      3
+#&gt;   SHH         0  42   0      1
+#&gt;   WNT         1   0  39      0
+#&gt;   Group4      6   0   0     54
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     22   1   1      2
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         1   0  38      0
+#&gt;   Group4      6   0   0     52
 ModelMetrics(Model = lda)
 #&gt; $ConfusionMatrix
 #&gt;         y_pred
@@ -607,6 +953,75 @@ nb &lt;- NaiveBayesModel(SplitRatio = 0.8,
                       Threshold = 0.8, 
                       NCores = 1, 
                       NewData = NewData)
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  41   0      0
+#&gt;   WNT         3   0  35      0
+#&gt;   Group4      1   0   0     59
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     28   0   0      0
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         3   0  34      0
+#&gt;   Group4      1   0   0     59
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     27   0   0      0
+#&gt;   SHH         0  43   0      0
+#&gt;   WNT         3   0  33      0
+#&gt;   Group4      2   0   0     59
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  39   0      0
+#&gt;   WNT         1   0  37      0
+#&gt;   Group4      2   0   0     56
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         2   0  36      0
+#&gt;   Group4      2   0   0     55
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     27   0   0      0
+#&gt;   SHH         0  40   0      0
+#&gt;   WNT         3   0  35      0
+#&gt;   Group4      2   0   0     52
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     24   0   0      0
+#&gt;   SHH         0  40   0      0
+#&gt;   WNT         3   0  36      0
+#&gt;   Group4      2   0   0     54
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     25   0   0      0
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         3   0  32      0
+#&gt;   Group4      1   0   0     60
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  43   0      0
+#&gt;   WNT         3   0  37      0
+#&gt;   Group4      2   0   0     58
+#&gt; 
+#&gt;         y_pred
+#&gt; y_true   Group3 SHH WNT Group4
+#&gt;   Group3     26   0   0      0
+#&gt;   SHH         0  42   0      0
+#&gt;   WNT         3   0  36      0
+#&gt;   Group4      1   0   0     57
 ModelMetrics(Model = nb)
 #&gt; $ConfusionMatrix
 #&gt;         y_pred
