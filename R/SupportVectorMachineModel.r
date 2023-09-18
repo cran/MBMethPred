@@ -15,7 +15,7 @@
 #' @examples
 #' set.seed(56)
 #' svm <- SupportVectorMachineModel(SplitRatio = 0.8,
-#'                                  CV = 3,
+#'                                  CV = 2,
 #'                                  NCores = 1,
 #'                                  NewData = NULL)
 load("data/Data1.RData")

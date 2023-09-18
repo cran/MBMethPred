@@ -16,8 +16,8 @@
 #' @examples
 #' set.seed(21)
 #' rf <- RandomForestModel(SplitRatio = 0.8,
-#'                         CV = 3,
-#'                         NTree = 10,
+#'                         CV = 2,
+#'                         NTree = 5,
 #'                         NCores = 1,
 #'                         NewData = NULL)
 load("data/Data1.RData")

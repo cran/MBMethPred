@@ -16,7 +16,7 @@
 #' @examples
 #' set.seed(111)
 #' knn <- KNearestNeighborModel(SplitRatio = 0.8,
-#'                              CV = 3,
+#'                              CV =2,
 #'                              K = 3,
 #'                              NCores = 1,
 #'                              NewData = NULL)

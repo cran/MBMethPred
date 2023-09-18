@@ -7,6 +7,6 @@ test_that("NewDataPredictionResult returns correct type", {
     sample(10)
   NewData <- cbind(rownames(NewData), NewData)
   colnames(NewData)[1] <- "ID"
-  xgboost <- XGBoostModel(SplitRatio = 0.8, CV = 5, NCores = 1, NewData = NewData)
+  xgboost <- XGBoostModel(SplitRatio = 0.8, CV = 2, NCores = 1, NewData = NewData)
   expect_type(NewDataPredictionResult(Model = xgboost), "list")
 })
